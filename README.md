@@ -16,7 +16,7 @@ This Chrome extension allows users to highlight text on any webpage and attach n
 
 1  Clone the repository or download the ZIP file.
    ```bash
-   git clone https://github.com/yourusername/web-page-highlighter.git
+   git clone https://github.com/ChetanJangid93/web-page-highlighter.git
 2  Open Chrome and navigate to chrome://extensions/.
 3  Enable "Developer mode" by toggling the switch in the top-right corner.
 4  Click "Load unpacked" and select the directory where you cloned/downloaded the extension.
