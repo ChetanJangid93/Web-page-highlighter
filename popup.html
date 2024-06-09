@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Annotator</title>
+  <style>
+    body {
+      width: 220px;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 5px 0;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 100%;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .dropdown-content button, .dropdown-content label {
+      color: black;
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+      width: calc(100% - 20px);
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+    .filter-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0 0 0;
+    }
+    .filter-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 5px;
+    }
+    .show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="dropdown">
+    <button id="selectColor">Select Color</button>
+    <div id="colorDropdown" class="dropdown-content">
+      <button id="yellow" style="background-color: yellow;">Yellow</button>
+      <button id="pink" style="background-color: pink;">Pink</button>
+      <button id="blue" style="background-color: blue;">Blue</button>
+      <button id="green" style="background-color: green;">Green</button>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button id="selectFilter">Select Filter</button>
+    <div id="filterDropdown" class="dropdown-content">
+      <label>
+        <input type="checkbox" id="filter-yellow" value="yellow"> Yellow
+      </label>
+      <label>
+        <input type="checkbox" id="filter-pink" value="pink"> Pink
+      </label>
+      <label>
+        <input type="checkbox" id="filter-blue" value="blue"> Blue
+      </label>
+      <label>
+        <input type="checkbox" id="filter-green" value="green"> Green
+      </label>
+      <div class="filter-buttons">
+        <button id="apply-filter">Apply</button>
+        <button id="clear-filter">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <button id="exportPDF">Export Highlights to PDF</button>
+  <button id="clear">Clear Highlights</button>
+
+  <script src="libs/jspdf.umd.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

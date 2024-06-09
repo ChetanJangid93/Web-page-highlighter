@@ -1,0 +1,69 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+#toolbar {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.color-btn {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.color-btn.active {
+  border: 2px solid black;
+}
+
+.highlight {
+  display: inline;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.highlight-yellow {
+  background-color: yellow;
+}
+
+.highlight-green {
+  background-color: lightgreen;
+}
+
+.highlight-blue {
+  background-color: lightblue;
+}
+
+.highlight-pink {
+  background-color: lightpink;
+}
+
+/* Add the CSS to style the note popup */
+.note-popup {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  width: 200px;
+}
+
+.note-popup textarea {
+  width: 100%;
+  height: 100px; /* Increased height */
+}
+
+.note-popup button {
+  display: inline-block; /* Changed to inline-block */
+  margin-top: 10px;
+  margin-right: 10px; /* Added margin-right */
+}
+
