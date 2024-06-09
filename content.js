@@ -14,7 +14,7 @@ document.addEventListener('mouseup', function() {
         let { startOffset, endOffset } = getRelativeOffsets(range, parent);
 
         // Log calculated offsets
-        console.log('Calculated offsets:', { startOffset, endOffset });
+        // console.log('Calculated offsets:', { startOffset, endOffset });
 
         let span = document.createElement('span');
         span.className = `highlight highlight-${currentColor}`;
@@ -103,7 +103,7 @@ function saveHighlight(text, startOffset, endOffset, parent, color, note) {
     };
 
     // Log the highlight parameters
-    console.log('Highlight to save:', newHighlight);
+    // console.log('Highlight to save:', newHighlight);
 
     // Get the current highlights data from local storage
     chrome.storage.local.get('highlights', function(result) {
@@ -120,7 +120,7 @@ function saveHighlight(text, startOffset, endOffset, parent, color, note) {
 
         // Save the updated highlights back to local storage
         chrome.storage.local.set({ highlights: highlightsData }, function() {
-            console.log('Highlights saved:', highlightsData);
+            // console.log('Highlights saved:', highlightsData);
         });
     });
 }
@@ -137,7 +137,7 @@ function removeHighlight(text, startOffset, endOffset, parent) {
 
         // Save the updated highlights back to local storage
         chrome.storage.local.set({ highlights: highlightsData }, function() {
-            console.log('Highlight removed:', highlightsData);
+            // console.log('Highlight removed:', highlightsData);
         });
     });
 }
@@ -145,17 +145,17 @@ function removeHighlight(text, startOffset, endOffset, parent) {
 // Function to load highlights from Chrome's local storage
 function loadHighlights() {
     const url = window.location.href;
-    console.log('Loading highlights for:', url);
+    // console.log('Loading highlights for:', url);
 
     chrome.storage.local.get('highlights', function(result) {
-        console.log('Stored highlights:', result);
+        // console.log('Stored highlights:', result);
         if (result.highlights && result.highlights[url]) {
             clearHighlights();
             result.highlights[url].forEach(highlight => {
-                console.log('Highlight to load:', highlight);
+                // console.log('Highlight to load:', highlight);
 
                 let parent = getNodeByXPath(highlight.parentXPath);
-                console.log('Parent node:', parent);
+                // console.log('Parent node:', parent);
                 if (parent) {
                     applyHighlight(parent, highlight.startOffset, highlight.endOffset, highlight.color, highlight.note);
                 }
@@ -192,7 +192,7 @@ function applyHighlight(parent, startOffset, endOffset, color, note) {
         span.setAttribute('data-note', note);
         span.setAttribute('data-color', color);
         range.surroundContents(span);
-        console.log('Highlight applied:', { range, color, note });
+        // console.log('Highlight applied:', { range, color, note });
 
         // Add click event listener to show note popup
         span.addEventListener('click', function() {
@@ -200,7 +200,7 @@ function applyHighlight(parent, startOffset, endOffset, color, note) {
             showNoteInputPopup(span, currentText, startOffset, endOffset, parent, note);
         });
     } else {
-        console.error('Error: Unable to find text node or apply highlight', {
+        // console.error('Error: Unable to find text node or apply highlight', {
             startOffset,
             endOffset,
             charCount,
@@ -343,14 +343,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             const highlightsData = result.highlights || {};
             highlightsData[url] = [];
             chrome.storage.local.set({ highlights: highlightsData }, function() {
-                console.log('Highlights cleared:', highlightsData);
+                // console.log('Highlights cleared:', highlightsData);
             });
         });
         sendResponse({ status: 'highlights_cleared' });
     } else if (request.action === 'changeColor') {
         currentColor = request.color;
         chrome.storage.local.set({ currentColor: request.color }, function() {
-            console.log('Color changed to:', currentColor);
+            // console.log('Color changed to:', currentColor);
         });
         sendResponse({ status: 'color_changed', color: currentColor });
     } else if (request.action === 'applyFilter') {
