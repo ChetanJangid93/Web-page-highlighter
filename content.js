@@ -35,7 +35,6 @@ document.addEventListener('mouseup', function() {
     }
 });
 
-
 function showNoteInputPopup(span, text, startOffset, endOffset, parent, existingNote = '') {
     let popup = document.createElement('div');
     popup.className = 'note-popup';
@@ -67,7 +66,7 @@ function showNoteInputPopup(span, text, startOffset, endOffset, parent, existing
     });
 
     popup.querySelector('.remove-highlight-button').addEventListener('click', function() {
-        removeHighlight(span);
+        removeHighlight(span, startOffset, endOffset, parent);
         document.body.removeChild(popup);
     });
 }
@@ -125,8 +124,8 @@ function saveHighlight(text, startOffset, endOffset, parent, color, note) {
     });
 }
 
-// Function to remove a specific highlight from Chrome's local storage
-function removeHighlight(text, startOffset, endOffset, parent) {
+// Function to remove a specific highlight from Chrome's local storage and the DOM
+function removeHighlight(span, startOffset, endOffset, parent) {
     const url = window.location.href;
     chrome.storage.local.get('highlights', function(result) {
         const highlightsData = result.highlights || {};
@@ -139,6 +138,14 @@ function removeHighlight(text, startOffset, endOffset, parent) {
         chrome.storage.local.set({ highlights: highlightsData }, function() {
             // console.log('Highlight removed:', highlightsData);
         });
+
+        // Remove the highlight from the DOM
+        let parentElement = span.parentNode;
+        while (span.firstChild) {
+            parentElement.insertBefore(span.firstChild, span);
+        }
+        parentElement.removeChild(span);
+        parentElement.normalize();
     });
 }
 
@@ -329,7 +336,6 @@ function exportHighlightsToPDF() {
         }
     });
 }
-
 
 // Load highlights when the page loads
 loadHighlights();
