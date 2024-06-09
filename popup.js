@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
       if (tabs[0].id) {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'changeColor', color: color }, function(response) {
           if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError.message);
+            // console.error(chrome.runtime.lastError.message);
           } else {
-            console.log('Color changed to:', color);
+            // console.log('Color changed to:', color);
             document.getElementById('colorDropdown').classList.remove('show');
           }
         });
       } else {
-        console.error('No active tab found.');
+        // console.error('No active tab found.');
       }
     });
   }
@@ -53,13 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (tabs[0].id) {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'clearHighlights' }, function(response) {
           if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError.message);
+            // console.error(chrome.runtime.lastError.message);
           } else {
-            console.log('Highlights cleared.');
+            // console.log('Highlights cleared.');
           }
         });
       } else {
-        console.error('No active tab found.');
+        // console.error('No active tab found.');
       }
     });
   });
@@ -69,13 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (tabs[0].id) {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'exportToPDF' }, function(response) {
           if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError.message);
+            // console.error(chrome.runtime.lastError.message);
           } else {
-            console.log('Highlights exported to PDF.');
+            // console.log('Highlights exported to PDF.');
           }
         });
       } else {
-        console.error('No active tab found.');
+        // console.error('No active tab found.');
       }
     });
   });
@@ -91,14 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
       if (tabs[0].id) {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'applyFilter', colors: selectedColors }, function(response) {
           if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError.message);
+            // console.error(chrome.runtime.lastError.message);
           } else {
-            console.log('Filter applied with colors:', selectedColors);
+            // console.log('Filter applied with colors:', selectedColors);
             document.getElementById('filterDropdown').classList.remove('show');
           }
         });
       } else {
-        console.error('No active tab found.');
+        // console.error('No active tab found.');
       }
     });
   });
@@ -111,14 +111,14 @@ document.addEventListener('DOMContentLoaded', function() {
       if (tabs[0].id) {
         chrome.tabs.sendMessage(tabs[0].id, { action: 'clearFilter' }, function(response) {
           if (chrome.runtime.lastError) {
-            console.error(chrome.runtime.lastError.message);
+            // console.error(chrome.runtime.lastError.message);
           } else {
-            console.log('Filter cleared.');
+            // console.log('Filter cleared.');
             document.getElementById('filterDropdown').classList.remove('show');
           }
         });
       } else {
-        console.error('No active tab found.');
+        // console.error('No active tab found.');
       }
     });
   });
